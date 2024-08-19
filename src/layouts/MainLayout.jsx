@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { Children } from 'react'
+import Header from '../components/Header'
 
-function MainLayout() {
+function MainLayout({children}) {
   return (
-    <div>MainLayout</div>
+    <div>
+      <Header></Header>
+      {children}
+    </div>
   )
 }
 
