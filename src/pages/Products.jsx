@@ -8,7 +8,8 @@ function Products() {
   useEffect(() => {
     fetch(`https://strapi-store-server.onrender.com/api/products/${id}`)
       .then(res => res.json())
-      .then(data => setProduct(data.data));
+      .then(data => setProduct(data.data))
+      .catch(error => console.error('Error fetching product:', error));
   }, [id]);
 
   if (!product) {

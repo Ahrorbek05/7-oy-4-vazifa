@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("https://strapi-store-server.onrender.com/api/products?featured=true")
@@ -10,6 +11,15 @@ function Home() {
       .then((data) => setData(data.data));
   }, []);
 
+  const handleClick = (id) => {
+    fetch(`https://strapi-store-server.onrender.com/api/products/${id}`)
+      .then((res) => res.json())
+      .then((productData) => {
+        console.log(productData);
+        navigate(`/product/${id}`)
+      });
+  };
+  
   return (
     <div>
       <div className="container px-8 py-20 mx-auto max-w-6xl flex justify-between">
@@ -22,9 +32,9 @@ function Home() {
             repellat explicabo enim soluta temporibus asperiores aut obcaecati
             perferendis porro nobis.
           </p>
-          <Link to="/products" className="text-white btn btn-info">
+          <button onClick={() => navigate("/products")} className="text-white btn btn-info">
             OUR PRODUCTS
-          </Link>
+          </button>
         </div>
         <div
           style={{ width: "496px", height: "448px" }}
@@ -72,10 +82,10 @@ function Home() {
           {data.length > 0 &&
             data.map((el, index) => {
               return (
-                <Link
-                  style={{ width: "352px", height: "332px" }}
+                <div
+                  onClick={() => handleClick(el.id)}
+                  style={{ width: "352px", height: "332px", cursor: "pointer" }}
                   className="shadow-xl hover:shadow-2xl transition duration-300 p-4 rounded-2xl"
-                  to={`/products/${el.id}`}
                   key={index}
                 >
                   <div className="text-center">
@@ -95,8 +105,8 @@ function Home() {
                       </h3>
                       <p>${el.attributes.price / 100}</p>
                     </div>
-                  </div>
-                </Link>
+                    </div>
+                </div>
               );
             })}
         </div>

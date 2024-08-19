@@ -32,7 +32,7 @@ function App() {
         <Route path='/header' element = {<Header></Header>}></Route>
         <Route path='/' element={<MainLayout><Home></Home></MainLayout>} />
         <Route path='/about' element={<MainLayout><About></About></MainLayout>} />
-        <Route path='/products' element={<MainLayout><Products></Products></MainLayout>} />
+        <Route path='/product/:id' element={<MainLayout><Products></Products></MainLayout>} />
         <Route path='/cart' element={<MainLayout><Cart></Cart></MainLayout>} />
         {
           token && <>
