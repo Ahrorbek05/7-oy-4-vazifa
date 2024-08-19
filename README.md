@@ -1,8 +1,1 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+React useState, useContext va useEffect kabi bir nechta o'rnatilgan ilgaklar bilan birga keladi. Ba'zan siz aniqroq maqsad uchun Hook bo'lishini xohlaysiz: masalan, ma'lumotlarni olish, foydalanuvchining onlayn ekanligini kuzatish yoki suhbat xonasiga ulanish. Siz bu ilgaklarni React-da topa olmasligingiz mumkin, ammo ilovangiz ehtiyojlari uchun o‘z ilgaklaringizni yaratishingiz mumkin.

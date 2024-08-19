@@ -19,7 +19,7 @@ function Header() {
     return (
         <div>
             <div className='header-auth bg-neutral p-2'>
-                <div className='max-w-7xl mx-auto'>
+                <div className='max-w-5xl mx-auto'>
                     {token.token && (
                         <div>
                             <span>Hello, {user.user.name}</span>
@@ -35,7 +35,7 @@ function Header() {
                 </div>
             </div>
             <div className="bg-base-200">
-                <div className="navbar max-w-7xl mx-auto">
+                <div className="navbar max-w-5xl mx-auto">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
