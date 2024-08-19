@@ -13,13 +13,17 @@ function Products() {
   }, [id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
   }
 
   return (
-    <div className="container mx-auto p-8">
-      <div className="flex gap-16">
-        <div className="w-1/2">
+    <div className="container px-8 py-20 mx-auto max-w-7xl flex justify-between">
+      <div className="flex gap-20">
+        <div className="w-1/3">
           <img
             src={product.attributes.image}
             alt={product.attributes.title}
@@ -45,7 +49,7 @@ function Products() {
           </div>
           <div className="flex items-center mb-6">
             <span className="mr-4">Amount:</span>
-            <select className="border rounded p-2">
+            <select className="border border-zinc-200	outline-none rounded w-44 p-2">
               {[...Array(10).keys()].map(i => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}
@@ -53,7 +57,7 @@ function Products() {
               ))}
             </select>
           </div>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">
+          <button className="bg-blue-700 text-white px-8 py-2 rounded">
             Add to Bag
           </button>
         </div>
