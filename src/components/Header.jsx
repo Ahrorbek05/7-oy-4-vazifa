@@ -77,7 +77,7 @@ function Header() {
                                 <NavLink to='/about'>About</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/products'>Products</NavLink>
+                                <NavLink to='/product/:id'>Products</NavLink>
                             </li>
                             <li>
                                 <NavLink to='/cart'>Cart</NavLink>

@@ -32,7 +32,7 @@ function Home() {
             repellat explicabo enim soluta temporibus asperiores aut obcaecati
             perferendis porro nobis.
           </p>
-          <button onClick={() => navigate("/products")} className="text-white btn btn-info">
+          <button onClick={() => navigate("/product/:id")} className="text-white btn btn-info">
             OUR PRODUCTS
           </button>
         </div>
