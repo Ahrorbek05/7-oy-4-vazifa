@@ -16,7 +16,7 @@ function Home() {
       .then((res) => res.json())
       .then((productData) => {
         console.log(productData);
-        navigate(`/product/${id}`)
+        navigate(`/details/${id}`)
       });
   };
   
@@ -32,7 +32,7 @@ function Home() {
             repellat explicabo enim soluta temporibus asperiores aut obcaecati
             perferendis porro nobis.
           </p>
-          <button onClick={() => navigate("/product/:id")} className="text-white btn btn-info">
+          <button onClick={() => navigate("/details/:id")} className="text-white btn btn-info">
             OUR PRODUCTS
           </button>
         </div>
