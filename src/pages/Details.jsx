@@ -36,15 +36,21 @@ function Details() {
 
   return (
     <div className="container mx-auto max-w-7xl px-4 py-16">
-      <div className="flex gap-20">
-        <div className="w-1/2">
+      <div className="breadcrumbs text-sm">
+        <ul>
+          <li><a>Home</a></li>
+          <li><a>Documents</a></li>
+        </ul>
+      </div>
+      <div className="flex gap-10">
+        <div className="w-1/3">
           <img
             src={product.attributes.image}
             alt={product.attributes.title}
-            className="rounded-lg"
+            className=" ml-32 w-96 rounded-lg"
           />
         </div>
-        <div className="w-1/2">
+        <div className="w-1/3 ml-32">
           <h2 className="text-4xl font-bold mb-4">{product.attributes.title}</h2>
           <p className="text-gray-500 text-lg mb-2">{product.attributes.company}</p>
           <p className="text-2xl text-gray-700 mb-6">
@@ -63,8 +69,18 @@ function Details() {
               ))}
             </div>
           </div>
+          <div>
+            <h4 class="text-md font-medium -tracking-wider capitalize mb-4">amount</h4>
+            <select className="select select-primary w-full max-w-xs mb-12">
+              <option disabled selected>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
           <button
-            className="bg-blue-700 text-white px-8 py-2 rounded"
+            className="btn bg-blue-700 text-white"
             onClick={handleAddToCart}
           >
             Add to Bag
