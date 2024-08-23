@@ -22,7 +22,7 @@ function Home() {
   
   return (
     <div>
-      <div className="max-w-5xl mx-auto mt-20 flex justify-between gap-20">
+      <div className="max-w-6xl mx-auto mt-20 flex justify-between gap-20">
         <div className="max-w-lg flex flex-wrap items-center">
           <h1 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-6xl text-slate-700 mt-5">
             We are changing the way people shop
@@ -32,7 +32,7 @@ function Home() {
             repellat explicabo enim soluta temporibus asperiores aut obcaecati
             perferendis porro nobis.
           </p>
-          <button onClick={() => navigate("/details/:id")} className="text-white btn btn-info">
+          <button onClick={() => navigate("/product/:id")} className="text-white btn btn-info">
             OUR PRODUCTS
           </button>
         </div>
@@ -75,10 +75,10 @@ function Home() {
         </div>
       </div>
       <div className="featuredproducts">
-        <h2 className="max-w-5xl mx-auto text-3xl mt-20 font-medium tracking-wider capitalize pb-5">
+        <h2 className="max-w-6xl mx-auto text-3xl mt-20 font-medium tracking-wider capitalize pb-5">
           Featured Products
         </h2>
-        <div className="wrapper flex max-w-5xl mx-auto gap-6 border-t-2 pt-10 mb-10">
+        <div className="wrapper flex max-w-6xl mx-auto gap-12 border-t-2 pt-10 mb-10">
           {data.length > 0 &&
             data.map((el, index) => {
               return (

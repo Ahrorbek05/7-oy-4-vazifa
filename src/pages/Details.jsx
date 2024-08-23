@@ -36,10 +36,11 @@ function Details() {
 
   return (
     <div className="container mx-auto max-w-7xl px-4 py-16">
-      <div className="breadcrumbs text-sm">
+      <div className="breadcrumbs text-sm mt-8 ml-32 mb-8">
         <ul>
-          <li><a>Home</a></li>
-          <li><a>Documents</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/product/:id">Products</a></li>
+          <li>{product.attributes.title}</li>
         </ul>
       </div>
       <div className="flex gap-10">
@@ -70,13 +71,13 @@ function Details() {
             </div>
           </div>
           <div>
-            <h4 class="text-md font-medium -tracking-wider capitalize mb-4">amount</h4>
+            <h4 className="text-md font-medium -tracking-wider capitalize mb-4">Amount</h4>
             <select className="select select-primary w-full max-w-xs mb-12">
-              <option disabled selected>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
             </select>
           </div>
           <button

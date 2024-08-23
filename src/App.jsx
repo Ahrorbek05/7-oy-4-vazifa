@@ -38,7 +38,7 @@ function App() {
       <TokenContext.Provider value={{ token, setToken }}>
         <CartProvider>
           <Routes>
-            <Route path='/header' element={<Header />} />
+            <Route path='/header' element={<Header></ Header >} />
             <Route path='/' element={<MainLayout><Home /></MainLayout>} />
             <Route path='/about' element={<MainLayout><About /></MainLayout>} />
             <Route path='/details/:id' element={<MainLayout><Details /></MainLayout>} />
