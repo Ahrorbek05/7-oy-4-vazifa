@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Products({ onFilterChange }) {
+function Products() {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
   const [company, setCompany] = useState('');
   const [sort, setSort] = useState('');
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(1000);
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -19,13 +20,48 @@ function Products({ onFilterChange }) {
       const response = await fetch('https://strapi-store-server.onrender.com/api/products');
       const data = await response.json();
       setProducts(data.data);
+      setFilteredProducts(data.data);
     } catch (error) {
       console.error('Error fetching products:', error);
     }
   }
 
-  function handleSearch() {
-    onFilterChange({ search, category, company, sort, price });
+  function filterProducts() {
+    let tempProducts = [...products];
+
+    if (search) {
+      tempProducts = tempProducts.filter(product =>
+        product.attributes.title.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    if (category !== 'all') {
+      tempProducts = tempProducts.filter(product => 
+        product.attributes.category === category
+      );
+    }
+
+    if (company) {
+      tempProducts = tempProducts.filter(product => 
+        product.attributes.company === company
+      );
+    }
+
+    tempProducts = tempProducts.filter(product => 
+      product.attributes.price / 100 <= price
+    );
+
+    if (sort === 'az') {
+      tempProducts.sort((a, b) => a.attributes.title.localeCompare(b.attributes.title));
+    } else if (sort === 'za') {
+      tempProducts.sort((a, b) => b.attributes.title.localeCompare(a.attributes.title));
+    } else if (sort === 'low') {
+      tempProducts.sort((a, b) => a.attributes.price - b.attributes.price);
+    } else if (sort === 'high') {
+      tempProducts.sort((a, b) => b.attributes.price - a.attributes.price);
+    }
+
+    setFilteredProducts(tempProducts);
   }
 
   function handleReset() {
@@ -33,8 +69,8 @@ function Products({ onFilterChange }) {
     setCategory('all');
     setCompany('');
     setSort('');
-    setPrice(0);
-    onFilterChange({ search: '', category: 'all', company: '', sort: '', price: 0 });
+    setPrice(1000);
+    setFilteredProducts(products);
   }
 
   const handleClickCard = (id) => {
@@ -43,7 +79,7 @@ function Products({ onFilterChange }) {
 
   return (
     <div>
-      <div className="w-[1090px] h-[220px] bg-[#F0F6FF] p-6 rounded-lg mx-auto my-20">
+      <div className="w-[1124px] h-[220px] bg-[#F0F6FF] pt-6 pl-9 rounded-lg mx-auto my-20">
         <div className="max-w-[1200px] w-full mx-auto">
           <div className="flex gap-5">
             <label className="input input-bordered input-sm flex items-center gap-2 w-[235px] mt-7">
@@ -127,7 +163,7 @@ function Products({ onFilterChange }) {
                 <input type="checkbox" defaultChecked className="checkbox ml-[-60px] mb-[-50px] w-[18px] h-[18px]" />
               </label>
               <button
-                onClick={handleSearch}
+                onClick={filterProducts}
                 className="w-[250px] ml-24 bg-[#007bff] text-gray-200 font-bold py-2 rounded-lg"
               >
                 SEARCH
@@ -144,9 +180,9 @@ function Products({ onFilterChange }) {
       </div>
 
       <div className="max-w-[1200px] mx-auto mb-32">
-        <div className="flex flex-wrap ml-12 gap-10">
-          {products.map(product => (
-            <div onClick={() => handleClickCard(product.id)} key={product.id} className="card cursor-pointer p-4 w-[341px] bg-base-100 shadow-xl">
+        <div className="flex flex-wrap ml-8 gap-10">
+          {filteredProducts.map(product => (
+            <div onClick={() => handleClickCard(product.id)} key={product.id} className="card cursor-pointer p-4 w-[352px] bg-base-100 shadow-xl">
               <figure>
                 <img src={product.attributes.image} alt={product.attributes.title} className="w-full rounded-b-xl h-48 object-cover"/>
               </figure>
